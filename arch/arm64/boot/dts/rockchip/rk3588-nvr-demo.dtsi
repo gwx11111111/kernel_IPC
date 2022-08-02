@@ -162,6 +162,44 @@
 
                status = "okay";
          };
+      es8388_sound: es8388-sound {
+             status = "okay";
+             compatible = "rockchip,multicodecs-card";
+             rockchip,card-name = "rockchip-es8388";
+             /*pinctrl-names = "default";
+             pinctrl-0 = <&hp_det>;
+             hp-det-gpios = <&gpio1 RK_PC4 GPIO_ACTIVE_LOW>;*/
+             io-channels = <&saradc 3>;
+             io-channel-names = "adc-detect";
+             keyup-threshold-microvolt = <1800000>;
+             poll-interval = <100>;
+             spk-con-gpios = <&gpio3 RK_PD0 GPIO_ACTIVE_HIGH>;
+            /* hp-con-gpio = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;*/
+             rockchip,format = "i2s";
+             rockchip,mclk-fs = <256>;
+             rockchip,cpu = <&i2s0_8ch>;
+             rockchip,codec = <&es8388>;
+             rockchip,audio-routing =
+                          "Headphone", "LOUT2",
+                          "Headphone", "ROUT2",
+                          "Speaker", "LOUT2",
+                          "Speaker", "ROUT2",
+                          "Headphone", "Headphone Power",
+                          "Headphone", "Headphone Power",
+                          "Speaker", "Speaker Power",
+                          "Speaker", "Speaker Power",
+                          "LINPUT1", "Main Mic",
+                          "LINPUT2", "Main Mic",
+                          "RINPUT1", "Headset Mic",
+                          "RINPUT2", "Headset Mic";
+
+              play-pause-key {
+                          label = "playpause";
+                          linux,code = <KEY_PLAYPAUSE>;
+                          press-threshold-microvolt = <2000>;
+                 };
+        };
+
 
 };
 
@@ -445,7 +483,22 @@
 		wakeup-source;
 	};
 };
+&i2c7{
+      status = "okay";
 
+          es8388: es8388@11 {
+                  status = "okay";
+                  #sound-dai-cells = <0>;
+		  compatible = "everest,es8388", "everest,es8323";
+                  reg = <0x11>;
+                  clocks = <&cru I2S0_8CH_MCLKOUT>;
+                  clock-names = "mclk";
+                  pinctrl-names = "default";
+                  pinctrl-0 = <&i2s0_mclk>;
+          };
+
+
+};
 &i2s0_8ch {
 	status = "okay";
 	pinctrl-0 = <&i2s0_lrck
