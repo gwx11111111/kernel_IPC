@@ -660,7 +660,7 @@ static int es8323_set_bias_level(struct snd_soc_component *component,
 	case SND_SOC_BIAS_OFF:
 		dev_dbg(component->dev, "%s off\n", __func__);
 		snd_soc_component_write(component, ES8323_ADCPOWER, 0xFF);
-		snd_soc_component_write(component, ES8323_DACPOWER, 0xC0);
+		//snd_soc_component_write(component, ES8323_DACPOWER, 0xC0);
 		snd_soc_component_write(component, ES8323_CHIPLOPOW1, 0xFF);
 		snd_soc_component_write(component, ES8323_CHIPLOPOW2, 0xFF);
 		snd_soc_component_write(component, ES8323_CHIPPOWER, 0xFF);
