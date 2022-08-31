@@ -313,6 +313,11 @@
 #define KEY_RFKILL		247	/* Key that controls all radios */
 
 #define KEY_MICMUTE		248	/* Mute / unmute the microphone */
+#define KEY_APP_SETTINGS        485
+#define KEY_APP_VIDEO           486
+#define KEY_APP_BROWSER         487
+#define KEY_APP_GOOGLE          488
+#define KEY_APP_MUSIC           489
 
 /* Code 255 is reserved for special needs of AT keyboard driver */
 

@@ -558,7 +558,12 @@ static void hidinput_update_battery(struct hid_device *dev, int value)
 {
 }
 #endif	/* CONFIG_HID_BATTERY_STRENGTH */
-
+#define KEY_APP_SETTINGS 485
+#define KEY_APP_VIDEO 486
+#define KEY_APP_BROWSER 487
+#define KEY_APP_GOOGLE 488
+#define KEY_APP_MUSIC 489
+#define KEY_VOICE_ASSIST 582
 static void hidinput_configure_usage(struct hid_input *hidinput, struct hid_field *field,
 				     struct hid_usage *usage)
 {
@@ -1004,6 +1009,11 @@ static void hidinput_configure_usage(struct hid_input *hidinput, struct hid_fiel
 		case 0x1b7: map_key_clear(KEY_AUDIO);		break;
 		case 0x1b8: map_key_clear(KEY_VIDEO);		break;
 		case 0x1bc: map_key_clear(KEY_MESSENGER);	break;
+		case 0x1e5: map_key_clear(KEY_APP_SETTINGS);            break;
+                case 0x1e6: map_key_clear(KEY_APP_GOOGLE);              break;
+                case 0x1e7: map_key_clear(KEY_APP_VIDEO);               break;
+                case 0x1e8: map_key_clear(KEY_APP_BROWSER);             break;
+                case 0x1f0: map_key_clear(KEY_APP_MUSIC);               break;
 		case 0x1bd: map_key_clear(KEY_INFO);		break;
 		case 0x1cb: map_key_clear(KEY_ASSISTANT);	break;
 		case 0x201: map_key_clear(KEY_NEW);		break;
@@ -1013,6 +1023,8 @@ static void hidinput_configure_usage(struct hid_input *hidinput, struct hid_fiel
 		case 0x207: map_key_clear(KEY_SAVE);		break;
 		case 0x208: map_key_clear(KEY_PRINT);		break;
 		case 0x209: map_key_clear(KEY_PROPS);		break;
+		case 0x20c: map_key_clear(KEY_VOICE_ASSIST);    break;
+                case 0x020: map_key_clear(KEY_VOICE_ASSIST);    break;
 		case 0x21a: map_key_clear(KEY_UNDO);		break;
 		case 0x21b: map_key_clear(KEY_COPY);		break;
 		case 0x21c: map_key_clear(KEY_CUT);		break;

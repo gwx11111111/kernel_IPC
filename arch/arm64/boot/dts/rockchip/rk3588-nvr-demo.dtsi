@@ -628,7 +628,7 @@
 	ir_key3 {
 		rockchip,usercode = <0x7f80>;
 		rockchip,key_table =
-			<0xf2   KEY_REPLY>,
+	               <0xf2   KEY_REPLY>,
                        <0xe4   KEY_BACK>,
                        <0xd9   KEY_UP>,
                        <0xd7   KEY_DOWN>,
@@ -658,7 +658,14 @@
                        <0xc6   KEY_9>,
                        <0xcf   KEY_0>,
                        <0xa7   58>,
-                       <0xbb   KEY_BACKSPACE>;
+		       <0xbb   KEY_BACKSPACE>,
+                       <0xbe   KEY_PAGEUP>,
+                       <0xbf   KEY_APP_SETTINGS>,
+                       <0x2e   KEY_APP_VIDEO>,
+                       <0x2d   KEY_APP_BROWSER>,
+                       <0x43   KEY_APP_GOOGLE>,
+                       <0x2b   KEY_APP_MUSIC>,
+                       <0xbd   KEY_PAGEDOWN>;
 
 	};
 };
