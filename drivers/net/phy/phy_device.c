@@ -32,7 +32,8 @@
 #include <linux/string.h>
 #include <linux/uaccess.h>
 #include <linux/unistd.h>
-
+#define RTL821x_LCR            0x10
+#define RTL821x_PAGE_SELECT                     0x1f
 MODULE_DESCRIPTION("PHY library");
 MODULE_AUTHOR("Andy Fleming");
 MODULE_LICENSE("GPL");
@@ -2958,11 +2959,15 @@ static int phy_probe(struct device *dev)
 
 	/* Set the state to READY by default */
 	phydev->state = PHY_READY;
+	 phy_write(phydev, RTL821x_PAGE_SELECT, 0xd04);
+       phy_write(phydev, RTL821x_LCR, 0XC171); /*led configuration*/
+       phy_write(phydev, RTL821x_PAGE_SELECT, 0);
 
 out:
 	/* Assert the reset signal */
 	if (err)
 		phy_device_reset(phydev, 1);
+
 
 	mutex_unlock(&phydev->lock);
 
