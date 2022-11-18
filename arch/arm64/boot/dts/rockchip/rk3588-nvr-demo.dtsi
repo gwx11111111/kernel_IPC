@@ -166,23 +166,23 @@
 &dp1 {
 	pinctrl-0 = <&dp1m2_pins &dp1_hdmi_ctl>;
 	pinctrl-names = "default";
-	status = "okay";
+	status = "disabled";
 };
 
 &dp1_in_vp0 {
-	status = "okay";
+	status = "disabled";
 };
 
 &dp1_in_vp1 {
-	status = "okay";
+	status = "disabled";
 };
 
 &dp1_in_vp2 {
-	status = "okay";
+	status = "disabled";
 };
 
 &dp1_sound {
-	status = "okay";
+	status = "disabled";
 };
 
 &gmac0 {
