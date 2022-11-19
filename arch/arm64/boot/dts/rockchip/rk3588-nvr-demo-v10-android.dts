@@ -70,6 +70,9 @@
 	status = "disabled";
 };
 
+&pcie2x1l0 {
+	status = "okay";
+};
 &route_dp0 {
 	status = "okay";
 	connect = <&vp2_out_dp0>;
