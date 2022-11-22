@@ -22,6 +22,9 @@
 	status = "disabled";
 };
 
+&dp1 {
+	status = "okay";
+};
 &dp1_in_vp0 {
 	status = "disabled";
 };
@@ -30,6 +33,9 @@
 	status = "disabled";
 };
 
+&dp1_in_vp2 {
+	status = "okay";
+};
 &hdmi0_in_vp1 {
 	status = "disabled";
 };
@@ -74,14 +80,17 @@
 	status = "okay";
 };
 &route_dp0 {
-	status = "okay";
+	status = "disabled";
 	connect = <&vp2_out_dp0>;
 	/delete-property/ force-output;
 	/delete-node/ force_timing;
 };
 
 &route_dp1 {
-	status = "disabled";
+	status = "okay";
+	connect = <&vp2_out_dp1>;
+	/delete-property/ force-output;
+	/delete-node/ force_timing;
 };
 
 &route_hdmi0 {

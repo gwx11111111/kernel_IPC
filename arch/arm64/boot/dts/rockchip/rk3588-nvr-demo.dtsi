@@ -200,9 +200,10 @@
 };
 
 &dp1 {
-	pinctrl-0 = <&dp1m2_pins &dp1_hdmi_ctl>;
+	pinctrl-0 = <&dp1_hpd>;
 	pinctrl-names = "default";
-	status = "disabled";
+	hpd-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
+	status = "okay";
 };
 
 &dp1_in_vp0 {
@@ -214,11 +215,11 @@
 };
 
 &dp1_in_vp2 {
-	status = "disabled";
+	status = "okay";
 };
 
 &dp1_sound {
-	status = "disabled";
+	status = "okay";
 };
 
 &gmac0 {
@@ -630,7 +631,7 @@
 };
 
 &route_dp0 {
-	status = "okay";
+	status = "disabled";
 	force-output;
 	connect = <&vp2_out_dp0>;
 
@@ -796,6 +797,12 @@
                          rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
                 };
         };
+	dp {
+	dp1_hpd: dp1-hpd {
+		 rockchip,pins = <1 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
+	 };
+	};
+
        wireless-wlan {
                 wifi_host_wake_irq: wifi-host-wake-irq {
                          rockchip,pins = <0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_down>;
