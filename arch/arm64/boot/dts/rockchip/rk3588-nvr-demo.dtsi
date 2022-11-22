@@ -167,7 +167,6 @@
 
 &combphy0_ps {
 	pinctrl-names = "default";
-	pinctrl-0 = <&sata0_pm_reset>;
 	status = "okay";
 };
 
@@ -774,9 +773,6 @@
 	};
 
 	sata {
-		sata0_pm_reset: sata0-pm-reset {
-			rockchip,pins = <4 RK_PA0 RK_FUNC_GPIO &pcfg_output_high>;
-		};
 		sata1_pm_reset: sata1-pm-reset {
 			rockchip,pins = <4 RK_PA1 RK_FUNC_GPIO &pcfg_output_high>;
 		};

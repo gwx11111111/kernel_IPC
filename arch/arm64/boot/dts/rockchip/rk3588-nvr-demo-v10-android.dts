@@ -105,7 +105,7 @@
 };
 
 &sata0 {
-	status = "disabled";
+	status = "okay";
 };
 
 &sata1 {
