@@ -13,6 +13,7 @@
 #include <linux/delay.h>
 
 #define RTL821x_PHYSR				0x11
+#define RTL821x_LCR            0x10
 #define RTL821x_PHYSR_DUPLEX			BIT(13)
 #define RTL821x_PHYSR_SPEED			GENMASK(15, 14)
 
@@ -242,6 +243,9 @@ static int rtl8211f_config_init(struct phy_device *phydev)
 			"2ns RX delay was already %s (by pin-strapping RXD0 or bootloader configuration)\n",
 			val_rxdly ? "enabled" : "disabled");
 	}
+       phy_write(phydev, RTL821x_PAGE_SELECT, 0xd04); /*set page 0xd04*/
+       phy_write(phydev, RTL821x_LCR, 0XC171); /*led configuration*/
+       phy_write(phydev, RTL821x_PAGE_SELECT, 0);
 
 	return 0;
 }
