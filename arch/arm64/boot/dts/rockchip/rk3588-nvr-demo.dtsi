@@ -188,7 +188,7 @@
              keyup-threshold-microvolt = <1800000>;
              poll-interval = <100>;
              spk-con-gpios = <&gpio3 RK_PD0 GPIO_ACTIVE_HIGH>;
-            /* hp-con-gpio = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;*/
+             hp-con-gpios = <&gpio4 RK_PA4 GPIO_ACTIVE_HIGH>;
              rockchip,format = "i2s";
              rockchip,mclk-fs = <256>;
              rockchip,cpu = <&i2s0_8ch>;
@@ -454,9 +454,9 @@
 };
 
 &i2c3 {
-	status = "okay";
+	status = "disabled";
 	es8311: es8311@18 {
-		status = "okay";
+		status = "disabled";
 		compatible = "everest,es8311";
 		reg = <0x18>;
 		#sound-dai-cells = <0>;
