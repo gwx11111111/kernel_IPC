@@ -320,7 +320,7 @@
 	status = "okay";
 };
 &sdio {
-  max-frequency = <150000000>;
+  max-frequency = <200000000>;
   no-sd;
   no-mmc;
   bus-width = <4>;
