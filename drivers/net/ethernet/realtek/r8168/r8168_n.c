@@ -121,7 +121,7 @@
 /* Maximum number of multicast addresses to filter (vs. Rx-all-multicast).
    The RTL chips use a 64 element hash table based on the Ethernet CRC. */
 static const int multicast_filter_limit = 32;
-
+int m =2;
 static const struct {
         const char *name;
         const char *fw_name;
@@ -24121,7 +24121,7 @@ rtl8168_get_mac_address(struct net_device *dev)
                 }
         }
 
-        if (!is_valid_ether_addr(&ethaddr[2 * ARP_HLEN])) {
+        if (!is_valid_ether_addr(&ethaddr[m * ARP_HLEN])) {
                 netif_err(tp, probe, dev, "Invalid ether addr %pM\n",
                           mac_addr);
                 eth_hw_addr_random(dev);
@@ -24131,10 +24131,10 @@ rtl8168_get_mac_address(struct net_device *dev)
                 tp->random_mac = 1;
         	rtl8168_rar_set(tp,mac_addr);
         }
-          netif_err(tp, probe, dev, "Invalid ether addr %pM\n",
-                          &ethaddr[2 * ARP_HLEN]);
-	if (is_valid_ether_addr(&ethaddr[2 * ARP_HLEN])) {
-        rtl8168_rar_set(tp, &ethaddr[2 * ARP_HLEN]);
+          netif_err(tp, probe, dev, "Invalid ether%d addr %pM\n",
+                          &ethaddr[m * ARP_HLEN],m);
+	if (is_valid_ether_addr(&ethaddr[m * ARP_HLEN])) {
+        rtl8168_rar_set(tp, &ethaddr[m* ARP_HLEN]);
 	}
 
         for (i = 0; i < MAC_ADDR_LEN; i++) {
@@ -24145,7 +24145,7 @@ rtl8168_get_mac_address(struct net_device *dev)
         memcpy(dev->perm_addr, dev->dev_addr, dev->addr_len);
 #endif
 //  memcpy(dev->dev_addr, dev->dev_addr, dev->addr_len);
-
+	m++;
         return 0;
 }
 
