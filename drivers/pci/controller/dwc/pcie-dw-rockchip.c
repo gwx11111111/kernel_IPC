@@ -2076,7 +2076,6 @@ retry_regulator:
 		break;
 	}
 
-	if (rk_pcie->is_signal_test == true)
 		return 0;
 
 	if (ret)

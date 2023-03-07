@@ -228,7 +228,7 @@ static ssize_t regmap_read_debugfs(struct regmap *map, unsigned int from,
 
 	if (count > (PAGE_SIZE << (MAX_ORDER - 1)))
 		count = PAGE_SIZE << (MAX_ORDER - 1);
-
+	printk("map=%px, from=%d, to=%d, count=%ld\n", map, from, to, count);
 	buf = kmalloc(count, GFP_KERNEL);
 	if (!buf)
 		return -ENOMEM;
@@ -253,7 +253,9 @@ static ssize_t regmap_read_debugfs(struct regmap *map, unsigned int from,
 			buf_pos += map->debugfs_reg_len + 2;
 
 			/* Format the value, write all X if we can't read */
+			 printk("map=%px, i=%d\n", map, i);
 			ret = regmap_read(map, i, &val);
+			printk("ret=%ld, val=%x\n", ret, val);
 			if (ret == 0)
 				snprintf(buf + buf_pos, count - buf_pos,
 					 "%.*x", map->debugfs_val_len, val);

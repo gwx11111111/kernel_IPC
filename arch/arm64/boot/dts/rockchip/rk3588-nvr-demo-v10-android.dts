@@ -69,11 +69,8 @@
 };
 
 &pcie30phy {
-	status = "disabled";
-};
-
-&pcie3x4 {
-	status = "disabled";
+	rockchip,pcie30-phymode = <PHY_MODE_PCIE_NANBNB>;
+	status = "okay";
 };
 
 &pcie2x1l0 {
@@ -82,6 +79,14 @@
         pinctrl-0 = <&rtl8111_isolate>;
 	status = "okay";
 };
+&pcie3x4 {
+	num-lanes = <2>;
+	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
+	pinctrl-names = "default";
+        pinctrl-0 = <&rtl8111_isolate1>;
+	status = "okay";
+};
+
 &route_dp0 {
 	status = "disabled";
 	connect = <&vp2_out_dp0>;

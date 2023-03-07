@@ -223,7 +223,6 @@
 };
 
 &combphy1_ps {
-	pinctrl-names = "default";
 	status = "okay";
 };
 
@@ -339,6 +338,12 @@
   status = "okay";
   pinctrl-names = "default";
   pinctrl-0 = <&uart9m0_xfer &uart9m0_ctsn>;
+};
+
+&uart5 {
+  status = "okay";
+  pinctrl-names = "default";
+  pinctrl-0 = <&uart5m0_xfer>;
 };
 
 
@@ -852,6 +857,9 @@
        rtl8111 {
                  rtl8111_isolate: rtl8111-isolate {
                        rockchip,pins = <4 RK_PA1 RK_FUNC_GPIO &pcfg_pull_up>;
+                 };
+                 rtl8111_isolate1: rtl8111-isolate1 {
+                       rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>;
                  };
          };
          wireless-bluetooth {
