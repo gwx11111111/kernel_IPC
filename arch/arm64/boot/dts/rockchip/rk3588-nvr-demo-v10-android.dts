@@ -61,7 +61,7 @@
 };
 
 &hdptxphy_hdmi1 {
-	status = "disabled";
+	status = "okay";
 };
 
 &i2s6_8ch {
@@ -78,7 +78,15 @@
         pinctrl-names = "default";
         pinctrl-0 = <&rtl8111_isolate>;
 	status = "okay";
+
 };
+&pcie3x2 {
+	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+        pinctrl-0 = <&rtl8111_isolate2>;
+	status = "okay";
+
+};
+
 &pcie3x4 {
 	num-lanes = <2>;
 	reset-gpios = <&gpio4 RK_PB6 GPIO_ACTIVE_HIGH>;
@@ -95,7 +103,7 @@
 };
 
 &route_dp1 {
-	status = "okay";
+	status = "disabled";
 	connect = <&vp2_out_dp1>;
 	/delete-property/ force-output;
 	/delete-node/ force_timing;

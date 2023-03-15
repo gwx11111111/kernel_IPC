@@ -249,9 +249,8 @@
 };
 
 &dp1 {
-	pinctrl-0 = <&dp1_hpd>;
+	pinctrl-0 = <&dp1m0_pins>;
 	pinctrl-names = "default";
-	hpd-gpios = <&gpio1 RK_PB2 GPIO_ACTIVE_HIGH>;
 	status = "okay";
 };
 
@@ -316,7 +315,7 @@
 	/* rx_delay = <0x4f>; */
 
 	phy-handle = <&rgmii_phy1>;
-	status = "okay";
+	status = "disabled";
 };
 &sdio {
   max-frequency = <200000000>;
@@ -861,6 +860,9 @@
                  rtl8111_isolate1: rtl8111-isolate1 {
                        rockchip,pins = <4 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>;
                  };
+                 rtl8111_isolate2: rtl8111-isolate2 {
+                       rockchip,pins = <4 RK_PA7 RK_FUNC_GPIO &pcfg_pull_up>;
+                 };
          };
          wireless-bluetooth {
                  uart9_gpios: uart9-gpios {
@@ -958,7 +960,7 @@
 };
 
 &usbdp_phy1 {
-	rockchip,dp-lane-mux = <2 3>;
+	rockchip,dp-lane-mux = <0 1 2 3>;
 	status = "okay";
 };
 
@@ -967,7 +969,10 @@
 };
 
 &usbdp_phy1_u3 {
+	maximum-speed = "high-speed";
 	status = "okay";
+
+
 };
 
 &usbdrd3_0 {
@@ -985,6 +990,7 @@
 
 &usbdrd_dwc3_1 {
 	dr_mode = "host";
+	maximum-speed = "high-speed";
 	status = "okay";
 };
 
