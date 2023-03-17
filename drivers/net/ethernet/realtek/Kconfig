@@ -15,6 +15,18 @@ config NET_VENDOR_REALTEK
 	  the questions about Realtek devices. If you say Y, you will be asked for
 	  your specific card in the following questions.
 
+config PGDRV 
+	bool "Realtek devices1"
+	depends on PCI 
+	default m 
+	help
+	  If you have a network (Ethernet) mac card belonging to this class, say Y.
+
+	  Note that the answer to this question mac doesn't directly affect the
+	  kernel: saying N will just cause the mac configurator to skip all
+	  the questions about Realtek devices mac. If you say Y, you will be asked for
+	  your specific card in the following mac questions.
+
 if NET_VENDOR_REALTEK
 
 config ATP
@@ -108,6 +120,21 @@ config R8168
 	  To compile this driver as a module, choose M here: the module
 	  will be called r8168.  This is recommended.
 
+	  
+config R8125
+	tristate "Realtek 8125 gigabit ethernet support"
+	depends on PCI
+	select FW_LOADER
+	select CRC32
+	select PHYLIB
+	select REALTEK_PHY
+	help
+	  Say Y here if you have a Realtek 8125 PCI Gigabit Ethernet adapter.
+
+	  To compile this driver as a module, choose M here: the module
+	  will be called r8125.  This is recommended.
+	  
+	  
 config R8169
 	tristate "Realtek 8169/8168/8101/8125 ethernet support"
 	depends on PCI

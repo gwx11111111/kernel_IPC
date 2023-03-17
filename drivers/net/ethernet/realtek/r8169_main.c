@@ -3201,7 +3201,7 @@ static void rtl_hw_start_8168h_1(struct rtl8169_private *tp)
 		{ 0x01, 0xffff,	0x068b }
 	};
 	int rg_saw_cnt;
-
+	
 	/* disable aspm and clock request before access ephy */
 	rtl_hw_aspm_clkreq_enable(tp, false);
 	rtl_ephy_init(tp, e_info_8168h_1);
@@ -3242,7 +3242,8 @@ static void rtl_hw_start_8168h_1(struct rtl8169_private *tp)
 		sw_cnt_1ms_ini &= 0x0fff;
 		r8168_mac_ocp_modify(tp, 0xd412, 0x0fff, sw_cnt_1ms_ini);
 	}
-
+	 dev_warn(tp_to_dev(tp), "ting random one%s\n",__func__);
+	RTL_W16(tp, 0x18, 0x2870);
 	r8168_mac_ocp_modify(tp, 0xe056, 0x00f0, 0x0070);
 	r8168_mac_ocp_modify(tp, 0xe052, 0x6000, 0x8008);
 	r8168_mac_ocp_modify(tp, 0xe0d6, 0x01ff, 0x017f);

@@ -114,10 +114,10 @@
 		regulator-min-microvolt = <5000000>;
 		regulator-max-microvolt = <5000000>;
 		enable-active-high;
-		gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+		/*gpio = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;*/
 		vin-supply = <&vcc5v0_sys>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&vcc5v0_host_en>;
+		/*pinctrl-0 = <&vcc5v0_host_en>;*/
 	};
 
 	vcc5v0_otg: vcc5v0-otg-regulator {
@@ -126,10 +126,10 @@
 		regulator-min-microvolt = <5000000>;
 		regulator-max-microvolt = <5000000>;
 		enable-active-high;
-		gpio = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;
+		/*gpio = <&gpio4 RK_PA7 GPIO_ACTIVE_HIGH>;*/
 		vin-supply = <&vcc5v0_sys>;
 		pinctrl-names = "default";
-		pinctrl-0 = <&vcc5v0_otg_en>;
+		/*pinctrl-0 = <&vcc5v0_otg_en>;*/
 	};
 
 	vcc_1v1_nldo_s3: vcc-1v1-nldo-s3 {
@@ -343,6 +343,11 @@
   status = "okay";
   pinctrl-names = "default";
   pinctrl-0 = <&uart5m0_xfer>;
+};
+&uart3 {
+  status = "okay";
+  pinctrl-names = "default";
+  pinctrl-0 = <&uart3m1_xfer>;
 };
 
 
@@ -911,22 +916,19 @@
 };
 
 &u2phy0_otg {
-	vbus-supply = <&vcc5v0_otg>;
+
 	status = "okay";
 };
 
 &u2phy1_otg {
-	phy-supply = <&vcc5v0_host>;
 	status = "okay";
 };
 
 &u2phy2_host {
-	phy-supply = <&vcc5v0_host>;
 	status = "okay";
 };
 
 &u2phy3_host {
-	phy-supply = <&vcc5v0_host>;
 	status = "okay";
 };
 

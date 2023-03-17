@@ -80,8 +80,10 @@
 	status = "okay";
 
 };
+
 &pcie3x2 {
 	reset-gpios = <&gpio4 RK_PB0 GPIO_ACTIVE_HIGH>;
+        pinctrl-names = "default";
         pinctrl-0 = <&rtl8111_isolate2>;
 	status = "okay";
 

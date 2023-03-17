@@ -45,7 +45,8 @@ CONFIG_DYNAMIC_ASPM = y
 ENABLE_USE_FIRMWARE_FILE = n
 
 ifneq ($(KERNELRELEASE),)
-	obj-$(CONFIG_R8168) := r8168.o
+	obj-m := r8168.o
+#obj-$(CONFIG_R8168) := r8168.o
 	r8168-objs := r8168_n.o r8168_asf.o rtl_eeprom.o rtltool.o
 	ifeq ($(CONFIG_SOC_LAN), y)
 		EXTRA_CFLAGS += -DCONFIG_SOC_LAN
