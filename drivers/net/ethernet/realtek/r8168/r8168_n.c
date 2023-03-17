@@ -89,7 +89,6 @@
 #include "rtl_eeprom.h"
 #include "rtltool.h"
 #include "r8168_firmware.h"
-#include <linux/soc/rockchip/rk_vendor_storage.h>
 
 #ifdef ENABLE_R8168_PROCFS
 #include <linux/proc_fs.h>
@@ -115,8 +114,6 @@
 #define FIRMWARE_8168H_2    "rtl_nic/rtl8168h-2.fw"
 #define FIRMWARE_8168FP_3   "rtl_nic/rtl8168fp-3.fw"
 #define FIRMWARE_8168FP_4   "rtl_nic/rtl8168fp-4.fw"
-#define MAX_ETHERNET    0x3
-#define ARP_HLEN        6
 
 /* Maximum number of multicast addresses to filter (vs. Rx-all-multicast).
    The RTL chips use a 64 element hash table based on the Ethernet CRC. */
@@ -24062,13 +24059,11 @@ static int
 rtl8168_get_mac_address(struct net_device *dev)
 {
         struct rtl8168_private *tp = netdev_priv(dev);
-        int i,ret;
+        int i;
         u8 mac_addr[MAC_ADDR_LEN];
-	u8 ethaddr[ARP_HLEN * MAX_ETHERNET] = {0};
 
-        //for (i = 0; i < MAC_ADDR_LEN; i++)
-          //      mac_addr[i] = RTL_R8(tp, MAC0 + i);
-	ret = rk_vendor_read(3, ethaddr, sizeof(ethaddr));
+        for (i = 0; i < MAC_ADDR_LEN; i++)
+                mac_addr[i] = RTL_R8(tp, MAC0 + i);
 
         if (tp->mcfg == CFG_METHOD_18 ||
             tp->mcfg == CFG_METHOD_19 ||
@@ -24121,7 +24116,7 @@ rtl8168_get_mac_address(struct net_device *dev)
                 }
         }
 
-        if (!is_valid_ether_addr(&ethaddr[2 * ARP_HLEN])) {
+        if (!is_valid_ether_addr(mac_addr)) {
                 netif_err(tp, probe, dev, "Invalid ether addr %pM\n",
                           mac_addr);
                 eth_hw_addr_random(dev);
@@ -24129,13 +24124,9 @@ rtl8168_get_mac_address(struct net_device *dev)
                 netif_info(tp, probe, dev, "Random ether addr %pM\n",
                            mac_addr);
                 tp->random_mac = 1;
-        	rtl8168_rar_set(tp,mac_addr);
         }
-          netif_err(tp, probe, dev, "Invalid ether addr %pM\n",
-                          &ethaddr[2 * ARP_HLEN]);
-	if (is_valid_ether_addr(&ethaddr[2 * ARP_HLEN])) {
-        rtl8168_rar_set(tp, &ethaddr[2 * ARP_HLEN]);
-	}
+
+        rtl8168_rar_set(tp, mac_addr);
 
         for (i = 0; i < MAC_ADDR_LEN; i++) {
                 dev->dev_addr[i] = RTL_R8(tp, MAC0 + i);
@@ -25632,7 +25623,7 @@ rtl8168_init_one(struct pci_dev *pdev,
         if (tp->eeprom_type == EEPROM_TYPE_93C46 || tp->eeprom_type == EEPROM_TYPE_93C56)
                 rtl8168_set_eeprom_sel_low(tp);
 
-        //rtl8168_get_mac_address(dev);
+        rtl8168_get_mac_address(dev);
 
         tp->fw_name = rtl_chip_fw_infos[tp->mcfg].fw_name;
 
@@ -25834,7 +25825,6 @@ static int rtl8168_open(struct net_device *dev)
         rtl8168_hw_phy_config(dev);
 
         rtl8168_hw_config(dev);
-        rtl8168_get_mac_address(dev);
 
         rtl8168_dsm(dev, DSM_IF_UP);
 
@@ -28749,5 +28739,5 @@ rtl8168_cleanup_module(void)
 #endif
 }
 
-late_initcall(rtl8168_init_module);
+module_init(rtl8168_init_module);
 module_exit(rtl8168_cleanup_module);
