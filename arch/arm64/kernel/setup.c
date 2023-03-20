@@ -20,7 +20,6 @@
 #include <linux/kexec.h>
 #include <linux/root_dev.h>
 #include <linux/cpu.h>
-#include <linux/of_gpio.h>
 #include <linux/interrupt.h>
 #include <linux/smp.h>
 #include <linux/fs.h>
@@ -94,9 +93,7 @@ void __init smp_setup_processor_id(void)
 	 * access percpu variable inside lock_release
 	 */
 	set_my_cpu_offset(0);
-	gpio_request(85,"pcie_power");
-        gpio_direction_output(85, 1);
-	pr_info("Booting Linux on physical11 CPU 0x%010lx [0x%08x]\n",
+	pr_info("Booting Linux on physical CPU 0x%010lx [0x%08x]\n",
 		(unsigned long)mpidr, read_cpuid_id());
 }
 
