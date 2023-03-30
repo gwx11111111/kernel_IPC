@@ -105,7 +105,7 @@
 };
 
 &route_dp1 {
-	status = "disabled";
+	status = "okay";
 	connect = <&vp2_out_dp1>;
 	/delete-property/ force-output;
 	/delete-node/ force_timing;

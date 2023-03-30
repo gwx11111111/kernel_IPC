@@ -897,8 +897,8 @@
 			status = "disabled";
 			logo,uboot = "logo.bmp";
 			logo,kernel = "logo_kernel.bmp";
-			logo,mode = "fullscreen";
-			charge_logo,mode = "fullscreen";
+			logo,mode = "center";
+			charge_logo,mode = "center";
 			connect = <&vp1_out_dp1>;
 		};
 
