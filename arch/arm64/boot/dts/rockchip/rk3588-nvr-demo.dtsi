@@ -25,17 +25,7 @@
 			};
 		};
 	};
-       pdm-mic-array {
-                 status = "okay";
-                 compatible = "simple-audio-card";
-                 simple-audio-card,name = "rockchip,pdm-mic-array";
-                 simple-audio-card,cpu {
-                         sound-dai = <&pdm1>;
-                 };
-                 simple-audio-card,codec {
-                         sound-dai = <&dummy_codec>;
-               };
-         };
+
 	leds: leds {
 		compatible = "gpio-leds";
 		hdd_led: hdd-led {
@@ -51,10 +41,6 @@
 			linux,default-trigger = "default-on";
 		};
 	};
-	 dummy_codec: dummy-codec {
-                 compatible = "rockchip,dummy-codec";
-                 #sound-dai-cells = <0>;
-        };
 
 	pcie30_avdd0v75: pcie30-avdd0v75 {
 		compatible = "regulator-fixed";
